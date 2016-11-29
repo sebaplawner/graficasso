@@ -1,0 +1,165 @@
+$light-blue: #6c93c7
+$light-blue-darker: #5678a7
+
+*
+    -webkit-tap-highlight-color: rgba(0,0,0,0)
+
+body
+    -webkit-touch-callout: none
+    -webkit-text-size-adjust: none
+    -webkit-user-select: none
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif
+    font-size: 16px
+    height: 100%
+    margin: 0px
+    padding: 0px
+    width: 100%
+    overflow: hidden
+
+=truncate
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+=button-corner
+    content: ''
+    width: 0
+    float: left
+
+.app
+    .start-window
+        display: none
+        width: 100%
+        height: 100%
+        position: fixed
+        background-color: white
+        z-index: 2
+        .title
+            +truncate
+            width: calc(100% - 20px)
+            height: 26px
+            background-color: $light-blue
+            padding: 10px
+            font-size: 22px
+            color: white
+            font-weight: bold
+            float: left
+        .text
+            padding: 10px
+            font-size: 16px
+            line-height: 22px
+            height: calc(100% - 46px - 20px - 42px - 20px)
+            overflow: auto
+            float: left
+        .start-button
+            float: right
+            height: 18px
+            background-color: $light-blue
+            border-radius: 10px
+            margin-right: 10px
+            margin-bottom: 10px
+            margin-top: 10px
+            color: white
+            cursor: pointer
+            font-weight: bold
+            font-size: 16px
+            padding: 12px
+        .start-button:active
+            background-color: $light-blue-darker
+    .left-panel
+        display: none
+        position: fixed
+        width: 50%
+        height: 100%
+        .text
+            float: left
+            width: calc(100% - 60px)
+            height: calc(100% - 20px)
+            background-color: $light-blue
+            padding: 10px
+            font-size: 16px
+            line-height: 22px
+            color: white
+            overflow: auto
+        .left-panel-button:active
+            background-color: $light-blue-darker
+        .left-panel-button
+            width: 40px
+            height: calc(31px + 12px + 18px)
+            float: left
+            position: absolute
+            right: 0
+            img
+                background-color: $light-blue
+                display: block
+                width: calc(100% - 10px)
+                height: 31px
+                padding: 10px 5px
+                border-bottom: 1px solid $light-blue
+                border-top: 1px solid $light-blue
+            .left-panel-button-top-corner:before
+                +button-corner
+                border-bottom: 1px solid $light-blue
+                border-top: 6px solid white
+                border-left: 40px solid $light-blue
+            .left-panel-button-bottom-corner:before
+                +button-corner
+                border-top: 1px solid $light-blue
+                border-bottom: 6px solid white
+                border-left: 40px solid $light-blue
+    .finish-button
+        width: 50px
+        height: 50px
+        padding: 10px
+        background-color: $light-blue
+        border-radius: 60px
+        position: fixed
+        top: 0
+        right: 0
+        margin: 10px
+        img
+            width: 100%
+            height: 100%
+    .bottom-panel
+        background-color: $light-blue
+        position: fixed
+        bottom: 0
+        height: 60px
+        width: 140px + 40px * 2 + 24px
+        left: calc(50% - (140px + 40px * 2 + 24px) / 2)
+        img
+            height: calc(100% - 20px)
+            padding: 10px
+            float: left
+            cursor: pointer
+        img:active
+            background-color: $light-blue-darker
+        .left-panel-button-left-corner:before
+            +button-corner
+            border-left: 12px solid white
+            border-bottom: 60px solid $light-blue
+        .left-panel-button-right-corner:before
+            +button-corner
+            border-right: 12px solid white
+            border-bottom: 60px solid $light-blue
+    .workspace
+        width: 100%
+        height: 100%
+        position: absolute
+        top: calc(-1364px / 2)
+        left: calc(-1364px / 2)
+        overflow: visible
+        .workspace-grid
+            width: 100%
+            height: 100%
+            overflow: visible
+            .square
+                border: 1px dashed grey
+                position: absolute
+
+#text-button
+    top: 0
+#trash-button
+    bottom: 6px
+#redo-button
+    bottom: 73px
