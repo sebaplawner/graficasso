@@ -100,17 +100,15 @@ body {
       border-top: 1px solid #6c93c7;
       border-bottom: 6px solid white;
       border-left: 40px solid #6c93c7; }
-.app .finish-button {
+.app .top-button {
   width: 50px;
   height: 50px;
   padding: 10px;
   background-color: #6c93c7;
   border-radius: 60px;
   position: fixed;
-  top: 0;
-  right: 0;
   margin: 10px; }
-  .app .finish-button img {
+  .app .top-button img {
     width: 100%;
     height: 100%; }
 .app .bottom-panel {
@@ -151,16 +149,35 @@ body {
     height: 100%;
     overflow: visible; }
     .app .workspace .workspace-grid .square {
+      background-color: white;
       border: 1px dashed grey;
       position: absolute; }
+
+#finish-button {
+  width: 50px;
+  height: 50px;
+  right: 0;
+  top: 0;
+  display: none; }
+
+#camera-button {
+  width: 30px;
+  height: 30px;
+  right: 0; }
 
 #text-button {
   top: 0; }
 
 #trash-button {
-  bottom: 6px; }
+  bottom: 6px;
+  display: none; }
 
 #redo-button {
-  bottom: 73px; }
+  bottom: 73px;
+  display: none; }
+
+#cancel-button {
+  bottom: 6px;
+  display: none; }
 
 /*# sourceMappingURL=index.css.map */
