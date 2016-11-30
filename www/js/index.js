@@ -24,31 +24,50 @@ var app = {
     onDeviceReady: function() {
         $('#app').load('views/workspace.html', function() {
             console.log('Workspace loaded!');
-            newGrid(32);
+            workspace.initialize();
+        });
+    }
+};
 
-            var $panzoom = $('.workspace-grid').panzoom({
-                minScale: .5,
-                maxScale: 2,
-                onPan: onGridPan
+var workspace = {
+    initialize: function() {
+        text_displayed = false;
+        newGrid(32);
+
+        var $panzoom = $('.workspace-grid').panzoom({
+            minScale: .5,
+            maxScale: 2,
+            onPan: onGridPan
+        });
+        
+        $panzoom.parent().on('mousewheel.focal', function(e) {
+            e.preventDefault();
+            var delta = e.delta || e.originalEvent.wheelDelta;
+            var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+            $panzoom.panzoom('zoom', zoomOut, {
+                increment: 1,
+                focal: e
             });
+        });
+
+        $panzoom.parent().on('gestureend', function(e) {
+            if (e.scale < 1.0) {
+                $('.workspace-grid').panzoom("zoomOut");
+            } else if (e.scale > 1.0) {
+                $('.workspace-grid').panzoom("zoomIn");
+            }
+        }, false);
+        
+        $('#text-button').on('click', function(e) {
+            if(text_displayed) {
+                $('.left-panel').animate({'left': -$('.left-panel').outerWidth()+40+'px'}, 'slow');
+                $('.bottom-panel').animate({'left': '-='+$('.bottom-panel').outerWidth()/2+'px'}, 'slow')                
+            } else {
+                $('.left-panel').animate({'left': '0'}, 'slow');
+                $('.bottom-panel').animate({'left': '+='+$('.bottom-panel').outerWidth()/2+'px'}, 'slow')
+            }
             
-            $panzoom.parent().on('mousewheel.focal', function(e) {
-                e.preventDefault();
-                var delta = e.delta || e.originalEvent.wheelDelta;
-                var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-                $panzoom.panzoom('zoom', zoomOut, {
-                    increment: 1,
-                    focal: e
-                });
-            });
-
-            node.addEventListener('gestureend', function(e) {
-                if (e.scale < 1.0) {
-                    $('.workspace-grid').panzoom("zoomOut");
-                } else if (e.scale > 1.0) {
-                    $('.workspace-grid').panzoom("zoomIn");
-                }
-            }, false);
+            text_displayed = !text_displayed;
         });
     }
 };

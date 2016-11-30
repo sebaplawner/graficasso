@@ -55,10 +55,11 @@ body {
   .app .start-window .start-button:active {
     background-color: #5678a7; }
 .app .left-panel {
-  display: none;
   position: fixed;
   width: 50%;
-  height: 100%; }
+  height: 100%;
+  z-index: 1;
+  left: calc(-50% + 40px); }
   .app .left-panel .text {
     float: left;
     width: calc(100% - 60px);

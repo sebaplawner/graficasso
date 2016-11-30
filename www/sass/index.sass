@@ -67,10 +67,11 @@ body
         .start-button:active
             background-color: $light-blue-darker
     .left-panel
-        display: none
         position: fixed
         width: 50%
         height: 100%
+        z-index: 1
+        left: calc(-50% + 40px)
         .text
             float: left
             width: calc(100% - 60px)
