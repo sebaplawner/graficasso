@@ -13,145 +13,150 @@ body {
   width: 100%;
   overflow: hidden; }
 
-.app .start-window {
-  display: none;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-color: white;
-  z-index: 2; }
-  .app .start-window .title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: calc(100% - 20px);
-    height: 26px;
-    background-color: #6c93c7;
-    padding: 10px;
-    font-size: 22px;
-    color: white;
-    font-weight: bold;
-    float: left; }
-  .app .start-window .text {
-    padding: 10px;
-    font-size: 16px;
-    line-height: 22px;
-    height: calc(100% - 46px - 20px - 42px - 20px);
-    overflow: auto;
-    float: left; }
-  .app .start-window .start-button {
-    float: right;
-    height: 18px;
-    background-color: #6c93c7;
-    border-radius: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 12px; }
-  .app .start-window .start-button:active {
-    background-color: #5678a7; }
-.app .left-panel {
-  position: fixed;
-  width: 50%;
-  height: 100%;
-  z-index: 1;
-  left: calc(-50% + 40px); }
-  .app .left-panel .text {
-    float: left;
-    width: calc(100% - 60px);
-    height: calc(100% - 20px);
-    background-color: #6c93c7;
-    padding: 10px;
-    font-size: 16px;
-    line-height: 22px;
-    color: white;
-    overflow: auto; }
-  .app .left-panel .left-panel-button:active {
-    background-color: #5678a7; }
-  .app .left-panel .left-panel-button {
-    width: 40px;
-    height: calc(31px + 12px + 18px);
-    float: left;
-    position: absolute;
-    right: 0; }
-    .app .left-panel .left-panel-button img {
-      background-color: #6c93c7;
-      display: block;
-      width: calc(100% - 10px);
-      height: 31px;
-      padding: 10px 5px;
-      border-bottom: 1px solid #6c93c7;
-      border-top: 1px solid #6c93c7; }
-    .app .left-panel .left-panel-button .left-panel-button-top-corner:before {
-      content: "";
-      width: 0;
-      float: left;
-      border-bottom: 1px solid #6c93c7;
-      border-top: 6px solid white;
-      border-left: 40px solid #6c93c7; }
-    .app .left-panel .left-panel-button .left-panel-button-bottom-corner:before {
-      content: "";
-      width: 0;
-      float: left;
-      border-top: 1px solid #6c93c7;
-      border-bottom: 6px solid white;
-      border-left: 40px solid #6c93c7; }
-.app .top-button {
-  width: 50px;
-  height: 50px;
-  padding: 10px;
-  background-color: #6c93c7;
-  border-radius: 60px;
-  position: fixed;
-  margin: 10px; }
-  .app .top-button img {
-    width: 100%;
-    height: 100%; }
-.app .bottom-panel {
-  background-color: #6c93c7;
-  position: fixed;
-  bottom: 0;
-  height: 60px;
-  width: 244px;
-  left: calc(50% - (140px + 40px * 2 + 24px) / 2); }
-  .app .bottom-panel img {
-    height: calc(100% - 20px);
-    padding: 10px;
-    float: left;
-    cursor: pointer; }
-  .app .bottom-panel img:active {
-    background-color: #5678a7; }
-  .app .bottom-panel .left-panel-button-left-corner:before {
-    content: "";
-    width: 0;
-    float: left;
-    border-left: 12px solid white;
-    border-bottom: 60px solid #6c93c7; }
-  .app .bottom-panel .left-panel-button-right-corner:before {
-    content: "";
-    width: 0;
-    float: left;
-    border-right: 12px solid white;
-    border-bottom: 60px solid #6c93c7; }
-.app .workspace {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: calc(-1364px / 2);
-  left: calc(-1364px / 2);
-  overflow: visible; }
-  .app .workspace .workspace-grid {
+.app {
+  overflow: hidden; }
+  .app .start-window {
     width: 100%;
     height: 100%;
+    position: fixed;
+    background-color: white;
+    z-index: 2; }
+    .app .start-window .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 20px);
+      height: 26px;
+      background-color: #6c93c7;
+      padding: 10px;
+      font-size: 22px;
+      color: white;
+      font-weight: bold;
+      float: left; }
+    .app .start-window .text {
+      padding: 10px;
+      font-size: 16px;
+      line-height: 22px;
+      height: calc(100% - 46px - 20px - 42px - 20px);
+      overflow: auto;
+      float: left; }
+    .app .start-window .start-button {
+      float: right;
+      height: 18px;
+      background-color: #6c93c7;
+      border-radius: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px; }
+    .app .start-window .start-button:active {
+      background-color: #5678a7; }
+  .app .left-panel {
+    position: fixed;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    left: calc(-50% + 40px); }
+    .app .left-panel .text {
+      float: left;
+      width: calc(100% - 60px);
+      height: calc(100% - 20px);
+      background-color: #6c93c7;
+      padding: 10px;
+      font-size: 16px;
+      line-height: 22px;
+      color: white;
+      overflow: auto; }
+    .app .left-panel .left-panel-button:active {
+      background-color: #5678a7; }
+    .app .left-panel .left-panel-button {
+      width: 40px;
+      height: calc(31px + 12px + 18px);
+      float: left;
+      position: absolute;
+      right: 0; }
+      .app .left-panel .left-panel-button img {
+        background-color: #6c93c7;
+        display: block;
+        width: calc(100% - 10px);
+        height: 31px;
+        padding: 10px 5px;
+        border-bottom: 1px solid #6c93c7;
+        border-top: 1px solid #6c93c7; }
+      .app .left-panel .left-panel-button .left-panel-button-top-corner:before {
+        content: "";
+        width: 0;
+        float: left;
+        border-bottom: 1px solid #6c93c7;
+        border-top: 6px solid white;
+        border-left: 40px solid #6c93c7; }
+      .app .left-panel .left-panel-button .left-panel-button-bottom-corner:before {
+        content: "";
+        width: 0;
+        float: left;
+        border-top: 1px solid #6c93c7;
+        border-bottom: 6px solid white;
+        border-left: 40px solid #6c93c7; }
+  .app .top-button {
+    -webkit-backface-visibility: hidden;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background-color: #6c93c7;
+    border-radius: 60px;
+    position: fixed;
+    margin: 10px; }
+    .app .top-button img {
+      width: 100%;
+      height: 100%; }
+  .app .bottom-panel {
+    -webkit-backface-visibility: hidden;
+    z-index: 1;
+    background-color: #6c93c7;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 244px;
+    left: calc(50% - (140px + 40px * 2 + 24px) / 2); }
+    .app .bottom-panel img {
+      height: calc(100% - 20px);
+      padding: 10px;
+      float: left;
+      cursor: pointer; }
+    .app .bottom-panel img:active {
+      background-color: #5678a7; }
+    .app .bottom-panel .left-panel-button-left-corner:before {
+      content: "";
+      width: 0;
+      float: left;
+      border-left: 12px solid white;
+      border-bottom: 60px solid #6c93c7; }
+    .app .bottom-panel .left-panel-button-right-corner:before {
+      content: "";
+      width: 0;
+      float: left;
+      border-right: 12px solid white;
+      border-bottom: 60px solid #6c93c7; }
+  .app .workspace {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: calc(-1364px / 2);
+    left: calc(-1364px / 2);
     overflow: visible; }
-    .app .workspace .workspace-grid .square {
-      background-color: white;
-      border: 1px dashed grey;
-      position: absolute; }
+    .app .workspace .workspace-grid {
+      width: 100%;
+      height: 100%;
+      overflow: visible; }
+      .app .workspace .workspace-grid .square {
+        background-color: white;
+        border: 1px dashed grey;
+        position: absolute; }
 
 #finish-button {
   width: 50px;

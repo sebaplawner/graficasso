@@ -1,0 +1,1 @@
+cordova build android && adb install -r "C:/Users/Xenomorph/Documents/Cordova Projects/graficasso/platforms/android/build/outputs/apk/android-debug.apk" && adb shell am start com.plawner.graficasso/.MainActivity

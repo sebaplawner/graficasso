@@ -72,6 +72,12 @@ var workspace = {
             text_displayed = !text_displayed;
         });
 
+        $('#start-button').on('click', function(e) {
+            $('#start-window').animate({'opacity': '0'}, 'slow', function() {
+                $('#start-window').hide();
+            });
+        });
+
         $('#camera-button').on('click', function(e) {
             $('.workspace-grid').css({'-webkit-transform': 'translate(0px, 0px)'});
         });
