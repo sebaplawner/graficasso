@@ -146,16 +146,15 @@ body {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: calc(-1364px / 2);
-    left: calc(-1364px / 2);
     overflow: visible; }
     .app .workspace .workspace-grid {
       width: 100%;
       height: 100%;
-      overflow: visible; }
+      overflow: visible;
+      -webkit-font-smoothing: antialiased; }
       .app .workspace .workspace-grid .square {
         background-color: white;
-        border: 1px dashed grey;
+        border: 1px solid lightgrey;
         position: absolute; }
 
 #finish-button {

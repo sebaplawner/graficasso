@@ -29,6 +29,10 @@ var app = {
     }
 };
 
+var scale = 1;
+var init_posX = (30*32 - $(window).width())/-2;
+var init_posY = (30*32 - $(window).height())/-2;
+
 var workspace = {
     initialize: function() {
         text_displayed = false;
@@ -36,29 +40,18 @@ var workspace = {
         elements_ongrid = [];
         element_id = null;
 
-        var $panzoom = $('.workspace-grid').panzoom({
-            minScale: .5,
-            maxScale: 2,
-            onPan: onGridPan
-        });
-        
-        $panzoom.parent().on('mousewheel.focal', function(e) {
-            e.preventDefault();
-            var delta = e.delta || e.originalEvent.wheelDelta;
-            var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-            $panzoom.panzoom('zoom', zoomOut, {
-                increment: 1,
-                focal: e
-            });
-        });
-
-        $panzoom.parent().on('gestureend', function(e) {
-            if (e.scale < 1.0) {
-                $('.workspace-grid').panzoom("zoomOut");
-            } else if (e.scale > 1.0) {
-                $('.workspace-grid').panzoom("zoomIn");
+        interact('.workspace-grid')
+        .draggable({
+            inertia: true,
+            onmove: workspace.dragMoveListener
+        })
+        .gesturable({
+            onmove: function (event) {
+                scale = scale * (1 + event.ds);
+                scale = scale < 1 ? Math.max(scale, .8) : Math.min(scale, 1.2);
+                workspace.dragMoveListener(event);
             }
-        }, false);
+        });
         
         $('#text-button').on('click', function(e) {
             if(text_displayed) {
@@ -79,7 +72,15 @@ var workspace = {
         });
 
         $('#camera-button').on('click', function(e) {
-            $('.workspace-grid').css({'-webkit-transform': 'translate(0px, 0px)'});
+            var workspaceElement = document.getElementsByClassName('workspace-grid')[0];
+            scale = 1;
+
+            workspaceElement.style.webkitTransform =
+            workspaceElement.style.transform =
+              'translate(' + init_posX + 'px, ' + init_posY + 'px)';
+
+            workspaceElement.setAttribute('data-x', init_posX);
+            workspaceElement.setAttribute('data-y', init_posY);
         });
 
         $('.bottom-panel > img').on('click', function(e) {
@@ -101,6 +102,21 @@ var workspace = {
                 console.log('Square selected: ['+row+','+col+']');
             }
         });
+
+        $('#camera-button').click();
+    },
+
+    dragMoveListener: function(event) {
+        var target = event.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+        target.style.webkitTransform =
+        target.style.transform =
+          'translate(' + x + 'px, ' + y + 'px) scale(' + scale + ')';
+
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
     },
 
     toggleFinishButton: function(value) {
@@ -118,10 +134,12 @@ var workspace = {
 
         var distance = 0;
         var jumpline = 0;
+        var size = 30;
+
         for (var k = 0; k < n; k++) {
             for (var i = 0; i < n; i++) {
-                $(".workspace-grid").append($("<div></div>").data('row', i).data('col', k).addClass("square").height(56).width(128).css({'marginLeft': distance + 'px', 'marginTop': (jumpline * 58) + 'px'}));
-                distance += 128;
+                $(".workspace-grid").append($("<div></div>").data('row', i).data('col', k).addClass("square").height(size).width(size).css({'marginLeft': distance + 'px', 'marginTop': (jumpline * size) + 'px'}));
+                distance += size;
             }
 
             distance = 0;
@@ -131,39 +149,3 @@ var workspace = {
 };
 
 app.initialize();
-
-function onGridPan(e, panzoom) {
-    e.preventDefault();
-    /*
-    var transform = $('.workspace-grid').css('transform').slice(7, -1).split(',');
-
-    var maxX = 683,
-        minX = -2851,
-        maxY = 683,
-        minY = -856;
-
-    if(parseInt(transform[0]) < 1) {
-        maxX = 542;
-        minX = -892;
-        maxY = 604;
-        minY = 19;
-    } else if(parseInt(transform[0]) > 1) {
-        maxX = 968;
-        minX = -6667;
-        maxY = 847;
-        minY = -2554;
-    }
-
-    if(parseInt(transform[4]) > maxX)
-        transform[4] = maxX
-    else if(parseInt(transform[4]) < minX)
-        transform[4] = minX
-
-    if(parseInt(transform[5]) > maxY)
-        transform[5] = maxY
-    else if(parseInt(transform[5]) < minY)
-        transform[5] = minY
-
-    $('.workspace-grid').css('transform', 'matrix('+transform[0]+', 0, 0, '+transform[3]+', '+transform[4]+', '+transform[5]+')');
-    */
-}
